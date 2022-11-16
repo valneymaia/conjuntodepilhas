@@ -12,8 +12,9 @@ void imprimeMenu(){
     printf("2- Remover aluno\n");
     printf("3- Acessa aluno no topo da pilha\n");
     printf("4- Imprime as pilhas\n");
-    printf("5- Destruir pilhas\n");
-    printf("6- Sair do Programa\n");
+    printf("5- remover por nome\n");
+    printf("6- Destruir pilhas\n");
+    printf("7- Sair do Programa\n");
     printf("-------------\nSua opcao: ");
 }
 
@@ -33,10 +34,13 @@ int main()
     int opcao = -1;
     struct aluno dados;
     int lim;
+    char nome[50];
+
     printf("digite um inteiro para o tamanho limite da pilha: \n");
     scanf("%d", &lim);
     while(getchar() != '\n');
-    while(opcao != 6){
+
+    while(opcao != 7){
         imprimeMenu();
         scanf("%d", &opcao);
         while(getchar() != '\n');
@@ -56,15 +60,22 @@ int main()
         else if(opcao == 4){
             imprimir_lista(cdp);
         }
-        else if(opcao == 5){
+        else if(opcao == 5) {
+            printf("Digite o nome: ");
+            gets(nome);
+            remover_por_nome(cdp, nome);
+        }
+        else if(opcao == 6){
             destruir_lista(cdp);
             cdp = criar_lista();
         }
-        else if(opcao == 6)
+        else if(opcao == 7)
             printf("Encerrando o programa\n");
 
         else
             printf("Opcao invalida, tente novamente\n");
+
     }
     return 0;
 }
+
