@@ -64,6 +64,21 @@ void imprimir_lista(CDP *cdp)
     }
 }
 
+int remover_por_nome(CDP *cdp, char nome[50])
+{
+    if(cdp == NULL || tamanho(cdp->pilha) <= 0)
+        return 0;
+
+    CDP *aux = cdp;
+
+    while(aux != NULL) {
+        if(procurar_pilha(aux->pilha, nome) == 1) {
+            break;
+
+        aux = aux->proxima_pilha;
+    }
+    }
+}
 
 void destruir_lista(CDP *cdp)
 {
