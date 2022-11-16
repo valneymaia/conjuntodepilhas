@@ -113,3 +113,30 @@ int imprimePilha(Pilha *pd){
     return 1;
 
 }
+int procurar_pilha(Pilha *pilha, char nome[50])
+{
+    if(pilha == NULL || tamanho(pilha) <= 0)
+        return 0;
+
+    Elemento *penultimo = *pilha, *ultimo = penultimo->proximo;
+
+    // Caso o elemento a ser removido seja o primeiro
+    if(strcmp(penultimo->dados.nome, nome) == 0) {
+        remover(pilha);
+        return 1;
+    }
+
+
+    while(ultimo != NULL && strcmp(ultimo->dados.nome, nome) != 0) {
+        ultimo = ultimo->proximo;
+        penultimo = penultimo->proximo;
+    }
+
+    if(ultimo != NULL) {
+        penultimo->proximo = ultimo->proximo;
+        free(ultimo);
+        return 1;
+    }
+    else
+        return 0;
+}
